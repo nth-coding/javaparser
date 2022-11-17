@@ -1,3 +1,4 @@
+import com.github.javaparser.Position;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
@@ -14,98 +15,72 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Main {
-    public static int fieldCount = 0;
-    public static int methodCount = 0;
+
+    public static List<PositionData> line = new ArrayList<>();
     public static class ClassCollector extends VoidVisitorAdapter<List<String>> {
         @Override
         public void visit(ClassOrInterfaceDeclaration n, List<String> collector) {
-            collector.add("Class information :");
+            StringBuilder space = new StringBuilder();
+            Optional<Position> begin = n.getBegin();
+            Optional<Position> end = n.getEnd();
+            if (begin.isPresent() && end.isPresent()) {
+//            collector.add("Class information :");
 
-            collector.add("- Name: " + n.getNameAsString());
-
-            StringBuilder str = new StringBuilder();
-            for (int modiferCount = 0; modiferCount < n.getModifiers().size(); ++modiferCount) {
-                if (modiferCount != 0) str.append(", ");
-                str.append(n.getModifiers().get(modiferCount).toString());
-            }
-            collector.add("- Modifiers: " + str);
-
-            collector.add("________________________________________________");
-            super.visit(n, collector);
-        }
-
-        @Override
-        public void visit(FieldDeclaration n, List<String> collector) {
-//            collector.add("Field " + (fieldCount + 1) + " information: ");
-////            collector.add(n.getModifiers().toString());
-//            for (int index = 0; index < n.getVariables().size(); ++index) {
-//                VariableDeclarator variable = n.getVariables().get(index);
-//                collector.add("- Variable " + (index + 1) + ": " +
-//                        "\n + Name: " + variable.getNameAsString() +
-//                        "\n + Type: " + variable.getTypeAsString());
-//
-//                StringBuilder str = new StringBuilder();
-//                for (int modiferCount = 0; modiferCount < n.getModifiers().size(); ++modiferCount) {
-//                    if (modiferCount != 0) str.append(", ");
-//                    str.append(n.getModifiers().get(modiferCount));
-//                }
-//                collector.add(" + Modifier: " + str);
-//            }
-//            fieldCount++;
-            for (VariableDeclarator variable : n.getVariables()) {
-                collector.add("Variable: " + variable.getNameAsString());
-            }
-            collector.add("________________________________________________");
-            super.visit(n, collector);
-        }
-
-        @Override
-        public void visit(MethodDeclaration n, List<String> collector) {
-            collector.add("Method name: " + n.getNameAsString());
-
-//            methodCount++;
-            collector.add("________________________________________________");
-            super.visit(n, collector);
-        }
-    }
-
-    public static class FieldsCollector extends VoidVisitorAdapter<List<String>> {
-        @Override
-        public void visit(FieldDeclaration n, List<String> collector) {
-            collector.add("Field " + (fieldCount + 1) + " information: ");
-//            collector.add(n.getModifiers().toString());
-            for (int index = 0; index < n.getVariables().size(); ++index) {
-                VariableDeclarator variable = n.getVariables().get(index);
-                collector.add("- Variable " + (index + 1) + ": " +
-                        "\n + Name: " + variable.getNameAsString() +
-                        "\n + Type: " + variable.getTypeAsString());
-
-                StringBuilder str = new StringBuilder();
-                for (int modiferCount = 0; modiferCount < n.getModifiers().size(); ++modiferCount) {
-                    if (modiferCount != 0) str.append(", ");
-                    str.append(n.getModifiers().get(modiferCount));
+                for (PositionData present : line) {
+                    if (begin.get().isBefore(present.getEnd()) && begin.get().isAfter(present.getStart())) {
+                        space.append("   ");
+                    }
                 }
-                collector.add(" + Modifier: " + str);
-            }
-            fieldCount++;
-            collector.add("________________________________________________");
-//            super.visit(n, collector);
-        }
-    }
+                collector.add(space + "Class Name: " + n.getNameAsString());
 
-    public static class MethodsCollector extends VoidVisitorAdapter<List<String>> {
+                line.add(new PositionData(begin.get(), end.get()));
+
+                super.visit(n, collector);
+            }
+        }
+
+        @Override
+        public void visit(FieldDeclaration n, List<String> collector) {
+            StringBuilder space = new StringBuilder();
+            Optional<Position> begin = n.getBegin();
+            Optional<Position> end = n.getEnd();
+            if (begin.isPresent() && end.isPresent()) {
+                for (PositionData present : line) {
+                    if (begin.get().isBefore(present.getEnd()) && begin.get().isAfter(present.getStart())) {
+                        space.append("   ");
+                    }
+                }
+
+                for (VariableDeclarator variable : n.getVariables()) {
+                    collector.add(space + "Variable: " + variable.getNameAsString());
+                }
+//            collector.add("________________________________________________");
+                super.visit(n, collector);
+            }
+        }
+
         @Override
         public void visit(MethodDeclaration n, List<String> collector) {
-            collector.add("Method name: " + n.getNameAsString());
+            StringBuilder space = new StringBuilder();
+            Optional<Position> begin = n.getBegin();
+            Optional<Position> end = n.getEnd();
+            if (begin.isPresent() && end.isPresent()) {
+                for (PositionData present : line) {
+                    if (begin.get().isBefore(present.getEnd()) && begin.get().isAfter(present.getStart())) {
+                        space.append("   ");
+                    }
+                }
+                collector.add(space + "Method: " + n.getNameAsString());
 
 //            methodCount++;
-            collector.add("________________________________________________");
-            super.visit(n, collector);
+//            collector.add("________________________________________________");
+                super.visit(n, collector);
+            }
         }
     }
-
     public static void main(String[] args) throws Exception {
         String filename = "src/main/java/Shape.java";
         CompilationUnit compilationUnit = StaticJavaParser.parse(Files.newInputStream(Paths.get(filename)));
