@@ -12,15 +12,7 @@ public class PositionData {
         return start;
     }
 
-    public void setStart(Position start) {
-        this.start = start;
-    }
-
     public Position getEnd() {
         return end;
-    }
-
-    public void setEnd(Position end) {
-        this.end = end;
     }
 }
