@@ -1,6 +1,12 @@
 public class Main {
     public static void main(String[] args) throws Exception {
-        // true if you want to output to file, false if not
-        new JavaParserRun("src/main/java/Test.java", true);
+        // Init JavaParserRun with the filepath
+        JavaParserRun javaParserRun = new JavaParserRun("src/main/java/Test.java");
+
+        // Get output as String
+        System.out.println(javaParserRun.getOutputAsString());
+
+        // Get output to file (output.txt)
+        javaParserRun.getOutput();
     }
 }
