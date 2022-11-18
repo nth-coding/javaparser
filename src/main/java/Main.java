@@ -7,6 +7,6 @@ public class Main {
         System.out.println(javaParserRun.getOutputAsString());
 
         // Get output to file (output.txt)
-        javaParserRun.getOutput();
+        javaParserRun.getOutputAsFile("output.txt");
     }
 }

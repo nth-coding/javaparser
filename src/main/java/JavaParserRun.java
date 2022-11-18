@@ -36,8 +36,8 @@ public class JavaParserRun {
         return str.toString();
     }
 
-    public void getOutput() throws IOException {
-        OutputStream os = Files.newOutputStream(Paths.get("output.txt"));
+    public void getOutputAsFile(String filename) throws IOException {
+        OutputStream os = Files.newOutputStream(Paths.get(filename));
         for (String op : output) {
             os.write(op.getBytes());
         }
