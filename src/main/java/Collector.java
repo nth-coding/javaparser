@@ -19,14 +19,15 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
     private static String getClassInfo(ClassOrInterfaceDeclaration n) {
         StringBuilder str = new StringBuilder();
 
-        str.append(Collector.getSpace(n)).append("* Class information:\n");
+        str.append(Collector.getSpace(n)).append("Class information: (*)\n");
 
         str.append(Collector.getSpace(n)).append(" - Name: ").append(n.getNameAsString()).append("\n");
 
         str.append(Collector.getSpace(n)).append(" - Modifier: ");
 
         // Class does not have access modifier -> private
-        if (n.getModifiers().size() == 0) {
+        if (n.getModifiers().size() == 0 ||
+                (n.getModifiers().size() == 1 && n.getModifiers().get(0).toString().equals("static"))) {
             str.append("private");
         } else {
             for (int modiferCount = 0; modiferCount < n.getModifiers().size(); ++modiferCount) {
@@ -35,9 +36,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
             }
         }
 
-        str.append("\n")
-//                .append(Collector.getSpace(n))
-                .append("|_________________________________________\n");
+        str.append("\n").append("|_________________________________________\n");
         return str.toString();
     }
 
@@ -50,7 +49,6 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
         StringBuilder str = new StringBuilder();
 
         str.append(Collector.getSpace(n)).append("Field information:");
-//            collector.add(n.getModifiers().toString());
             for (int index = 0; index < n.getVariables().size(); ++index) {
                 VariableDeclarator variable = n.getVariables().get(index);
                 str.append("\n").append(Collector.getSpace(n)).append(" - Variable ").append(index + 1).append(": ")
@@ -64,10 +62,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
                 }
             }
 
-//        str.append("\n");
-        str.append("\n")
-//                .append(Collector.getSpace(n))
-                .append("|_________________________________________\n");
+        str.append("\n").append("|_________________________________________\n");
         return str.toString();
     }
 
@@ -90,10 +85,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
             str.append(n.getModifiers().get(modiferCount).toString());
         }
 
-//        str.append("\n");
-        str.append("\n")
-//                .append(Collector.getSpace(n))
-                .append("|_________________________________________\n");
+        str.append("\n").append("|_________________________________________\n");
         return str.toString();
     }
 
@@ -105,7 +97,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
      */
     private static <T extends Node> String getSpace(T n) {
         StringBuilder space = new StringBuilder();
-        space.append("|");
+        space.append("| ");
         Optional<Position> begin = n.getBegin();
         Optional<Position> end = n.getEnd();
 
