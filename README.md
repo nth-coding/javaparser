@@ -96,133 +96,134 @@ class A {
 
 ```
 ._________________________________________
-|* Class information:
-| - Name: Test
-| - Modifier: public 
+| Class information: (*)
+|  - Name: Test
+|  - Modifier: public 
 |_________________________________________
-|   Field information:
-|    - Variable 1: 
-|     + Name: var1
-|     + Type: String
-|     + Modifier: protected 
-|    - Variable 2: 
-|     + Name: var2
-|     + Type: String
-|     + Modifier: protected 
+|    Field information:
+|     - Variable 1: 
+|      + Name: var1
+|      + Type: String
+|      + Modifier: protected 
+|     - Variable 2: 
+|      + Name: var2
+|      + Type: String
+|      + Modifier: protected 
 |_________________________________________
-|   Field information:
-|    - Variable 1: 
-|     + Name: var3
-|     + Type: boolean
-|     + Modifier: public 
+|    Field information:
+|     - Variable 1: 
+|      + Name: var3
+|      + Type: boolean
+|      + Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: getVar1
-|    - Type: String
-|    - Modifier: public 
+|    Method information:
+|     - Name: getVar1
+|     - Type: String
+|     - Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: setVar1
-|    - Type: void
-|    - Modifier: public 
+|    Method information:
+|     - Name: setVar1
+|     - Type: void
+|     - Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: getVar2
-|    - Type: String
-|    - Modifier: public 
+|    Method information:
+|     - Name: getVar2
+|     - Type: String
+|     - Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: setVar2
-|    - Type: void
-|    - Modifier: public 
+|    Method information:
+|     - Name: setVar2
+|     - Type: void
+|     - Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: isVar3
-|    - Type: boolean
-|    - Modifier: public 
+|    Method information:
+|     - Name: isVar3
+|     - Type: boolean
+|     - Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: setVar3
-|    - Type: void
-|    - Modifier: public 
+|    Method information:
+|     - Name: setVar3
+|     - Type: void
+|     - Modifier: public 
 |_________________________________________
-|   * Class information:
-|    - Name: TestInner
-|    - Modifier: protected , static 
+|    Class information: (*)
+|     - Name: TestInner
+|     - Modifier: protected , static 
 |_________________________________________
-|      Field information:
-|       - Variable 1: 
-|        + Name: var4
-|        + Type: int
-|        + Modifier: public 
+|       Field information:
+|        - Variable 1: 
+|         + Name: var4
+|         + Type: int
+|         + Modifier: public 
 |_________________________________________
-|      Method information:
-|       - Name: getVar4
-|       - Type: int
-|       - Modifier: public 
+|       Method information:
+|        - Name: getVar4
+|        - Type: int
+|        - Modifier: public 
 |_________________________________________
-|      Method information:
-|       - Name: setVar4
-|       - Type: void
-|       - Modifier: public 
+|       Method information:
+|        - Name: setVar4
+|        - Type: void
+|        - Modifier: public 
 |_________________________________________
-|      Method information:
-|       - Name: helloTestInner
-|       - Type: void
-|       - Modifier: private 
+|       Method information:
+|        - Name: helloTestInner
+|        - Type: void
+|        - Modifier: private 
 |_________________________________________
-|   Method information:
-|    - Name: helloTest
-|    - Type: void
-|    - Modifier: private 
+|    Method information:
+|     - Name: helloTest
+|     - Type: void
+|     - Modifier: private 
 |_________________________________________
-|* Class information:
-| - Name: Test2
-| - Modifier: private
+| Class information: (*)
+|  - Name: Test2
+|  - Modifier: private
 |_________________________________________
-|   Field information:
-|    - Variable 1: 
-|     + Name: var5
-|     + Type: int
-|     + Modifier: private 
+|    Field information:
+|     - Variable 1: 
+|      + Name: var5
+|      + Type: int
+|      + Modifier: private 
 |_________________________________________
-|   Method information:
-|    - Name: getVar5
-|    - Type: int
-|    - Modifier: public 
+|    Method information:
+|     - Name: getVar5
+|     - Type: int
+|     - Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: setVar5
-|    - Type: void
-|    - Modifier: public 
+|    Method information:
+|     - Name: setVar5
+|     - Type: void
+|     - Modifier: public 
 |_________________________________________
-|   Method information:
-|    - Name: helloTest2
-|    - Type: void
-|    - Modifier: private 
+|    Method information:
+|     - Name: helloTest2
+|     - Type: void
+|     - Modifier: private 
 |_________________________________________
-|* Class information:
-| - Name: A
-| - Modifier: private
+| Class information: (*)
+|  - Name: A
+|  - Modifier: private
 |_________________________________________
-|   * Class information:
-|    - Name: B
-|    - Modifier: static 
+|    Class information: (*)
+|     - Name: B
+|     - Modifier: static 
 |_________________________________________
-|      * Class information:
-|       - Name: C
-|       - Modifier: static 
+|       Class information: (*)
+|        - Name: C
+|        - Modifier: static 
 |_________________________________________
-|         * Class information:
-|          - Name: D
-|          - Modifier: static 
+|          Class information: (*)
+|           - Name: D
+|           - Modifier: static 
 |_________________________________________
-|            Field information:
-|             - Variable 1: 
-|              + Name: varD
-|              + Type: int
-|              + Modifier: private 
+|             Field information:
+|              - Variable 1: 
+|               + Name: varD
+|               + Type: int
+|               + Modifier: private 
 |_________________________________________
+
 
 ```
 
