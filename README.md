@@ -94,136 +94,61 @@ class A {
 ...To this.
 <h4 a><strong><code>output.txt</code></strong></h4>
 
-```
 ._________________________________________
-| Class information: (*)
-|  - Name: Test
-|  - Modifier: public 
+| class <<abstract>> Test 
 |_________________________________________
-|    Field information:
-|     - Variable 1: 
-|      + Name: var1
-|      + Type: String
-|      + Modifier: protected 
-|     - Variable 2: 
-|      + Name: var2
-|      + Type: String
-|      + Modifier: protected 
+|    # String var1 
+|    # String var2 
+|    + final boolean var3 
 |_________________________________________
-|    Field information:
-|     - Variable 1: 
-|      + Name: var3
-|      + Type: boolean
-|      + Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: getVar1
-|     - Type: String
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar1
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: getVar2
-|     - Type: String
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar2
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: isVar3
-|     - Type: boolean
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar3
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Class information: (*)
-|     - Name: TestInner
-|     - Modifier: protected , static 
-|_________________________________________
-|       Field information:
-|        - Variable 1: 
-|         + Name: var4
-|         + Type: int
-|         + Modifier: public 
-|_________________________________________
-|       Method information:
-|        - Name: getVar4
-|        - Type: int
-|        - Modifier: public 
-|_________________________________________
-|       Method information:
-|        - Name: setVar4
-|        - Type: void
-|        - Modifier: public 
-|_________________________________________
-|       Method information:
-|        - Name: helloTestInner
-|        - Type: void
-|        - Modifier: private 
-|_________________________________________
-|    Method information:
-|     - Name: helloTest
-|     - Type: void
-|     - Modifier: private 
-|_________________________________________
-| Class information: (*)
-|  - Name: Test2
-|  - Modifier: private
-|_________________________________________
-|    Field information:
-|     - Variable 1: 
-|      + Name: var5
-|      + Type: int
-|      + Modifier: private 
-|_________________________________________
-|    Method information:
-|     - Name: getVar5
-|     - Type: int
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar5
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: helloTest2
-|     - Type: void
-|     - Modifier: private 
-|_________________________________________
-| Class information: (*)
-|  - Name: A
-|  - Modifier: private
-|_________________________________________
-|    Class information: (*)
-|     - Name: B
-|     - Modifier: static 
-|_________________________________________
-|       Class information: (*)
-|        - Name: C
-|        - Modifier: static 
-|_________________________________________
-|          Class information: (*)
-|           - Name: D
-|           - Modifier: static 
-|_________________________________________
-|             Field information:
-|              - Variable 1: 
-|               + Name: varD
-|               + Type: int
-|               + Modifier: private 
-|_________________________________________
+|    + Test[boolean var3] 
+|    + Test[String var1, String var2, boolean var3] 
+|
+|    + getVar1[] 
+|    + setVar1[String var1] 
+|    + getVar2[] 
+|    + setVar2[String var2] 
+|    + isVar3[] 
+|    - helloTest[] 
++_________________________________________
 
+._________________________________________
+|    class <<static>> TestInner 
+|_________________________________________
+|       + int var4 
+|
+|       + getVar4[] 
+|       + setVar4[int var4] 
+|       - helloTestInner[] 
++_________________________________________
+
+._________________________________________
+| class Test2 
+|_________________________________________
+|    - int var5 
+|
+|    + getVar5[] 
+|    + setVar5[int var5] 
+|    - helloTest2[] 
++_________________________________________
+
+._________________________________________
+| class A 
++_________________________________________
+
+._________________________________________
+|    class <<static>> B 
++_________________________________________
+
+._________________________________________
+|       class <<static>> C 
++_________________________________________
+
+._________________________________________
+|          class <<static>> D 
+|_________________________________________
+|             - int varD 
++_________________________________________
 
 ```
 
