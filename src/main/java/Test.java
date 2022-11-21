@@ -1,6 +1,16 @@
-public class Test {
+public abstract class Test {
     protected String var1, var2;
-    public boolean var3;
+    public final boolean var3;
+
+    public Test(boolean var3) {
+        this.var3 = var3;
+    }
+
+    public Test(String var1, String var2, boolean var3) {
+        this.var1 = var1;
+        this.var2 = var2;
+        this.var3 = var3;
+    }
 
     public String getVar1() {
         return var1;
@@ -20,10 +30,6 @@ public class Test {
 
     public boolean isVar3() {
         return var3;
-    }
-
-    public void setVar3(boolean var3) {
-        this.var3 = var3;
     }
 
     protected static class TestInner {

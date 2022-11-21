@@ -20,9 +20,6 @@ public class JavaParserRun {
     public JavaParserRun(String path) throws IOException {
         CompilationUnit compilationUnit = StaticJavaParser.parse(Files.newInputStream(Paths.get(path)));
 
-        // Beautify
-        output.add("._________________________________________\n");
-
         // Create class visitor and visit.
         VoidVisitor<List<String>> classVisitor = new Collector();
         classVisitor.visit(compilationUnit, output);
