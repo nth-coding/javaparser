@@ -95,136 +95,84 @@ class nthcoding.parser.A {
 <h4 a><strong><code>output.txt</code></strong></h4>
 
 ```
-._________________________________________
-| Class information: (*)
-|  - Name: nthcoding.parser.Test
-|  - Modifier: public 
-|_________________________________________
-|    Field information:
-|     - Variable 1: 
-|      + Name: var1
-|      + Type: String
-|      + Modifier: protected 
-|     - Variable 2: 
-|      + Name: var2
-|      + Type: String
-|      + Modifier: protected 
-|_________________________________________
-|    Field information:
-|     - Variable 1: 
-|      + Name: var3
-|      + Type: boolean
-|      + Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: getVar1
-|     - Type: String
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar1
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: getVar2
-|     - Type: String
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar2
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: isVar3
-|     - Type: boolean
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar3
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Class information: (*)
-|     - Name: TestInner
-|     - Modifier: protected , static 
-|_________________________________________
-|       Field information:
-|        - Variable 1: 
-|         + Name: var4
-|         + Type: int
-|         + Modifier: public 
-|_________________________________________
-|       Method information:
-|        - Name: getVar4
-|        - Type: int
-|        - Modifier: public 
-|_________________________________________
-|       Method information:
-|        - Name: setVar4
-|        - Type: void
-|        - Modifier: public 
-|_________________________________________
-|       Method information:
-|        - Name: helloTestInner
-|        - Type: void
-|        - Modifier: private 
-|_________________________________________
-|    Method information:
-|     - Name: helloTest
-|     - Type: void
-|     - Modifier: private 
-|_________________________________________
-| Class information: (*)
-|  - Name: nthcoding.parser.Test2
-|  - Modifier: private
-|_________________________________________
-|    Field information:
-|     - Variable 1: 
-|      + Name: var5
-|      + Type: int
-|      + Modifier: private 
-|_________________________________________
-|    Method information:
-|     - Name: getVar5
-|     - Type: int
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: setVar5
-|     - Type: void
-|     - Modifier: public 
-|_________________________________________
-|    Method information:
-|     - Name: helloTest2
-|     - Type: void
-|     - Modifier: private 
-|_________________________________________
-| Class information: (*)
-|  - Name: nthcoding.parser.A
-|  - Modifier: private
-|_________________________________________
-|    Class information: (*)
-|     - Name: B
-|     - Modifier: static 
-|_________________________________________
-|       Class information: (*)
-|        - Name: C
-|        - Modifier: static 
-|_________________________________________
-|          Class information: (*)
-|           - Name: D
-|           - Modifier: static 
-|_________________________________________
-|             Field information:
-|              - Variable 1: 
-|               + Name: varD
-|               + Type: int
-|               + Modifier: private 
-|_________________________________________
++-------------------------------------------------------------------------+
+|                           <<abstract>> Test                             |
++-------------------------------------------------------------------------+
+|# String var1                                                            |
+|# String var2                                                            |
+|+ final boolean var3                                                     |
++-------------------------------------------------------------------------+
 
++-------------------------------------------------------------------------+
+|                      <<static>> (Test.) TestInner                       |
++-------------------------------------------------------------------------+
+|                                                                         |
+|# String var1                                                            |
+|# String var2                                                            |
+|+ final boolean var3                                                     |
+|+ Test[boolean var3]                                                     |
++-------------------------------------------------------------------------+
 
++-------------------------------------------------------------------------+
+|                                 Test2                                   |
++-------------------------------------------------------------------------+
+|                                                                         |
+|# String var1                                                            |
+|# String var2                                                            |
+|+ final boolean var3                                                     |
+|+ Test[boolean var3]                                                     |
+|+ Test[String var1, String var2, boolean var3]                           |
+|                                                                         |
++-------------------------------------------------------------------------+
+
++-------------------------------------------------------------------------+
+|                                   A                                     |
++-------------------------------------------------------------------------+
+|                                                                         |
+|# String var1                                                            |
+|# String var2                                                            |
+|+ final boolean var3                                                     |
+|+ Test[boolean var3]                                                     |
+|+ Test[String var1, String var2, boolean var3]                           |
+|                                                                         |
++-------------------------------------------------------------------------+
+
++-------------------------------------------------------------------------+
+|                           <<static>> (A.) B                             |
++-------------------------------------------------------------------------+
+|                                                                         |
+|# String var1                                                            |
+|# String var2                                                            |
+|+ final boolean var3                                                     |
+|+ Test[boolean var3]                                                     |
+|+ Test[String var1, String var2, boolean var3]                           |
+|                                                                         |
++-------------------------------------------------------------------------+
+
++-------------------------------------------------------------------------+
+|                          <<static>> (A.B.) C                            |
++-------------------------------------------------------------------------+
+|                                                                         |
+|# String var1                                                            |
+|# String var2                                                            |
+|+ final boolean var3                                                     |
+|+ Test[boolean var3]                                                     |
+|+ Test[String var1, String var2, boolean var3]                           |
+|                                                                         |
++-------------------------------------------------------------------------+
+
++-------------------------------------------------------------------------+
+|                         <<static>> (A.B.C.) D                           |
++-------------------------------------------------------------------------+
+|                                                                         |
+|# String var1                                                            |
+|# String var2                                                            |
+|+ final boolean var3                                                     |
+|+ Test[boolean var3]                                                     |
+|+ Test[String var1, String var2, boolean var3]                           |
+|+ getVar1[]                                                              |
+|                                                                         |
++-------------------------------------------------------------------------+
 ```
 
 

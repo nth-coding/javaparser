@@ -94,7 +94,14 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
         }
         str.append(n.getNameAsString()).append("\n");
 
-        header.add(str.toString());
+
+        // spacing and indent
+        StringBuilder spacing = new StringBuilder();
+        for (int i = 0; i < (73 - str.length()) / 2; ++i) {
+            spacing.append(" ");
+        }
+
+        header.add(spacing + str.toString());
 
         // Fields
         if (n.getFields().size() != 0) {
