@@ -1,14 +1,14 @@
+package nthcoding.parser;
+
 import com.github.javaparser.Position;
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import javassist.compiler.ast.Declarator;
+import wagu.Board;
+import wagu.Table;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class Collector extends VoidVisitorAdapter<List<String>> {
     enum modifierCode {
@@ -20,12 +20,13 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
         ABSTRACT,
         FINAL,
     }
-
-    ;
-    private static final List<PositionData> line = new ArrayList<>();
+    private static final List<ClassOrInterfaceDeclaration> classes = new ArrayList<>();
+    private static List<String> output = new ArrayList<>();
+    private static final List<String> header = new ArrayList<>();
 
     /**
      * get getModifier (modifierCode).
+     *
      * @param modifier Modifier
      * @return modifierCode
      */
@@ -74,13 +75,8 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
      * @param n ClassDeclaration
      * @return info of class
      */
-    private static String getClassInfo(ClassOrInterfaceDeclaration n) {
+    private static List<String> getClassInfo(ClassOrInterfaceDeclaration n) {
         StringBuilder str = new StringBuilder();
-        str.append("._________________________________________\n");
-//        str.append("|          ");
-        str.append(getSpace(n));
-
-        str.append("class ");
 
         // Class does not have access modifier -> private
         for (int modiferCount = 0; modiferCount < n.getModifiers().size(); ++modiferCount) {
@@ -90,36 +86,37 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
 
             if (getAccessModifier(modifier).equals("static")) {
                 str.append("<<").append(getAccessModifier(modifier)).append(">> ");
-
             }
         }
-        str.append(n.getNameAsString()).append(" \n");
+
+        if (!getOuter(n).isEmpty()) {
+            str.append("(").append(getOuter(n)).append(") ");
+        }
+        str.append(n.getNameAsString()).append("\n");
+
+        header.add(str.toString());
 
         // Fields
         if (n.getFields().size() != 0) {
-            str.append("|_________________________________________\n");
-            str.append(getFieldTotalInfo(n.getFields()));
+            output.add(getFieldTotalInfo(n.getFields()));
         }
 
         // Constructors
         if (n.getConstructors().size() != 0) {
-            str.append("|_________________________________________\n");
-            str.append(getConstructorTotalInfo(n.getConstructors()));
+            output.add(getConstructorTotalInfo(n.getConstructors()));
         }
 
         // Methods
         if (n.getMethods().size() != 0) {
-            str.append("|\n");
-            str.append(getMethodTotalInfo(n.getMethods()));
+            output.add(getMethodTotalInfo(n.getMethods()));
         }
 
-        str.append("+_________________________________________\n\n");
-
-        return str.toString();
+        return output;
     }
 
     /**
      * get all the information of fields.
+     *
      * @param fields List<FieldDeclaration>
      * @return String
      */
@@ -128,7 +125,6 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
 
         for (FieldDeclaration field : fields) {
             for (int i = 0; i < field.getVariables().size(); ++i) {
-                str.append(Collector.getSpace(field));
 
                 VariableDeclarator variable = field.getVariables().get(i);
                 for (int modiferCount = 0; modiferCount < field.getModifiers().size(); ++modiferCount) {
@@ -146,6 +142,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
 
     /**
      * get all the information of constructors.
+     *
      * @param constructors List<ConstructorDeclaration>
      * @return String
      */
@@ -153,7 +150,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
         StringBuilder str = new StringBuilder();
 
         for (ConstructorDeclaration constructor : constructors) {
-            str.append(Collector.getSpace(constructor));
+//            str.append(Collector.getSpace(constructor));
 
             for (int modiferCount = 0; modiferCount < constructor.getModifiers().size(); ++modiferCount) {
                 Modifier modifier = constructor.getModifiers().get(modiferCount);
@@ -170,6 +167,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
 
     /**
      * get all the information of methods.
+     *
      * @param methods List<MethodDeclaration>
      * @return String
      */
@@ -177,7 +175,7 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
         StringBuilder str = new StringBuilder();
 
         for (MethodDeclaration method : methods) {
-            str.append(Collector.getSpace(method));
+//            str.append(Collector.getSpace(method));
 
             for (int modiferCount = 0; modiferCount < method.getModifiers().size(); ++modiferCount) {
                 Modifier modifier = method.getModifiers().get(modiferCount);
@@ -192,51 +190,53 @@ public class Collector extends VoidVisitorAdapter<List<String>> {
     }
 
     /**
-     * get indents and spacing.
+     * get class outer this class.
      *
      * @param n   T
      * @param <T> extend Node
      * @return (String) spacing
      */
-    private static <T extends Node> String getSpace(T n) {
+    private static <T extends Node> String getOuter(T n) {
         StringBuilder space = new StringBuilder();
-        space.append("| ");
         Optional<Position> begin = n.getBegin();
         Optional<Position> end = n.getEnd();
 
         if (begin.isPresent() && end.isPresent()) {
-            for (PositionData present : line) {
-                if (begin.get().isBefore(present.getEnd()) && begin.get().isAfter(present.getStart())) {
-                    space.append("   ");
+
+            for (ClassOrInterfaceDeclaration present : classes) {
+                if (present.getBegin().isPresent() && present.getEnd().isPresent()) {
+                    PositionData positionData = new PositionData(present.getBegin().get(), present.getEnd().get());
+
+                    if (begin.get().isBefore(positionData.getEnd()) && begin.get().isAfter(positionData.getStart())) {
+                        space.append(present.getNameAsString()).append(".");
+                    }
+
                 }
             }
         }
         return space.toString();
     }
 
-//    private static <T extends Node> String getOuter(T n) {
-//        StringBuilder str = new StringBuilder();
-//        Optional<Position> begin = n.getBegin();
-//        Optional<Position> end = n.getEnd();
-//
-//        if (begin.isPresent() && end.isPresent()) {
-//            for (PositionData present : line) {
-//                if (begin.get().isBefore(present.getEnd()) && begin.get().isAfter(present.getStart())) {
-//
-//                }
-//            }
-//        }
-//        return str.toString();
-//    }
-
     @Override
     public void visit(ClassOrInterfaceDeclaration n, List<String> collector) {
-        // New class found -> Tab in
-        if (n.getBegin().isPresent() && n.getEnd().isPresent()) {
-            line.add(new PositionData(n.getBegin().get(), n.getEnd().get()));
+        header.clear();
+
+        // Add class to the list
+        classes.add(n);
+
+        output = getClassInfo(n);
+        Board board = new Board(75);
+
+        List<List<String>> row = new ArrayList<>();
+        for (String out : output) {
+            row.add(Collections.singletonList(out));
         }
 
-        collector.add(getClassInfo(n));
+        String tableString = board.setInitialBlock(
+                new Table(board, 75, header, row).tableToBlocks()).build().getPreview();
+
+        tableString += "\n";
+        collector.add(tableString);
 
         super.visit(n, collector);
     }

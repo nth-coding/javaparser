@@ -9,7 +9,7 @@
 
 <artifactId>javaparser-symbol-solver-core</artifactId>
 <packaging>jar</packaging>
-<description>A Symbol Solver for Java, built on top of JavaParser (core)</description>
+<description>nthcoding.parser.A Symbol Solver for Java, built on top of JavaParser (core)</description>
 
 <licenses>
     <license>
@@ -21,7 +21,7 @@
         <name>Apache License, Version 2.0</name>
         <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         <distribution>repo</distribution>
-        <comments>A business-friendly OSS license</comments>
+        <comments>nthcoding.parser.A business-friendly OSS license</comments>
     </license>
 </licenses>
 

@@ -1,3 +1,5 @@
+package nthcoding.parser;
+
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.visitor.VoidVisitor;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaParserRun {
-    private static List<String> output = new ArrayList<>();
+    private static final List<String> output = new ArrayList<>();
 
     /**
      * constructor will print out the result or save it in output.txt.

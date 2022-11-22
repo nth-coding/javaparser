@@ -1,7 +1,9 @@
+package nthcoding.parser;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         // Init JavaParserRun with the filepath
-        JavaParserRun javaParserRun = new JavaParserRun("src/main/java/Test.java");
+        JavaParserRun javaParserRun = new nthcoding.parser.JavaParserRun("src/main/java/nthcoding/parser/Test.java");
 
         // Get output as String
         System.out.println(javaParserRun.getOutputAsString());

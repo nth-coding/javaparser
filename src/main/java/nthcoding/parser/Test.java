@@ -1,3 +1,5 @@
+package nthcoding.parser;
+
 public abstract class Test {
     protected String var1, var2;
     public final boolean var3;

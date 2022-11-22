@@ -4,17 +4,17 @@ This is a project which can parse and analyse your code in Java, using [JavaPars
 
 # How to use
 
-You need to init `JavaParserRun` with the filepath (path from content root).
+You need to init `nthcoding.parser.JavaParserRun` with the filepath (path from content root).
 - use `getOutputToFile(String filename)` to get the output to file.
 - use `getOutputToString()` to get the output as String.
 
 # Output
 
 For example, we can transform this java code...
-<h4 a><strong><code>Test.java</code></strong></h4>
+<h4 a><strong><code>nthcoding.parser.Test.java</code></strong></h4>
 
 ```
-public class Test {
+public class nthcoding.parser.Test {
     protected String var1, var2;
     public boolean var3;
 
@@ -63,7 +63,7 @@ public class Test {
     }
 }
 
-class Test2 {
+class nthcoding.parser.Test2 {
     private int var5;
 
     public int getVar5() {
@@ -79,7 +79,7 @@ class Test2 {
     }
 }
 
-class A {
+class nthcoding.parser.A {
     static class B {
         static class C {
             static class D {
@@ -97,7 +97,7 @@ class A {
 ```
 ._________________________________________
 | Class information: (*)
-|  - Name: Test
+|  - Name: nthcoding.parser.Test
 |  - Modifier: public 
 |_________________________________________
 |    Field information:
@@ -177,7 +177,7 @@ class A {
 |     - Modifier: private 
 |_________________________________________
 | Class information: (*)
-|  - Name: Test2
+|  - Name: nthcoding.parser.Test2
 |  - Modifier: private
 |_________________________________________
 |    Field information:
@@ -202,7 +202,7 @@ class A {
 |     - Modifier: private 
 |_________________________________________
 | Class information: (*)
-|  - Name: A
+|  - Name: nthcoding.parser.A
 |  - Modifier: private
 |_________________________________________
 |    Class information: (*)
