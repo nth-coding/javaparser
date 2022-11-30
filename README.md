@@ -11,10 +11,10 @@ You need to init `nthcoding.parser.JavaParserRun` with the filepath (path from c
 # Output
 
 For example, we can transform this java code...
-<h4 a><strong><code>nthcoding.parser.Test.java</code></strong></h4>
+<h4 a><strong><code>Test.java</code></strong></h4>
 
 ```
-public class nthcoding.parser.Test {
+public class Test {
     protected String var1, var2;
     public boolean var3;
 
@@ -63,7 +63,7 @@ public class nthcoding.parser.Test {
     }
 }
 
-class nthcoding.parser.Test2 {
+class Test2 {
     private int var5;
 
     public int getVar5() {
@@ -79,7 +79,7 @@ class nthcoding.parser.Test2 {
     }
 }
 
-class nthcoding.parser.A {
+class A {
     static class B {
         static class C {
             static class D {
